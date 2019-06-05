@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+      <meta charset="utf-8">
+      <title>Emision</title>
+      <script src="https://code.jquery.com/jquery-1.11.2.min.js" charset="utf-8"></script>
+      <script type='text/javascript' src="/socket.io/socket.io.js" charset="utf-8"></script>
+  </head>
+  <body>
+
+      <video src='' id='video' style='width:680px;height:320px;' autoplay='true'></video>
+
+      <!--Todo lo del Video lo va pasar al canvas -->para enviarlo al servidor
+      <canvas style='display:none;' id='preview' ></canvas>
+      <div id='logger'></div><!-- usar para saber si la camara esta activa-->
+
+      <!--Logica de trasnmision -->
+      <script type='text/javascript'>
+          var canvas=document.getElementById("preview");
+          var context=canvas.getContext("2d");
+
+          //console.log(context);
+          canvas.width=800;
+          canvas.height=600;
+          context.width=canvas.width;
+          context.height=canvas.height;
+
+          var video=document.getElementById("video");
+          var socket=io();
+
+          function logger(msg)
+          {
+            $("#logger").text(msg);
+          }
+
+          function loadCam(stream)
+          {
+              logger('camara cargada correctamente [ok]');
+              //convertir el objeto stream a un obj url
+              video.srcObject=stream;
+          }
+
+          function loadFail()
+          {
+            logger('Camara no conectada por favor Conectela');
+          }
+
+          //encargada de mostrar en el cambas
+          function viewVideo(video,context)
+          {            
+              //guarda como imagen lo capturado en el elemento video
+              context.drawImage(video,0,0,canvas.width,canvas.height);
+              socket.emit('stream',canvas.toDataURL('image/webp'));//emitir a todas las conexiones
+          }
+
+          $(function(){
+              //cargar el video
+              navigator.getUserMedia=(navigator.getUserMedia || navigator.webkitUserMedia || navigator.mozGetUserMedia || navigator.msgGetUserMedia );
+              //si detecto algun navegador de lso siguienters y lo precargo en una variable
+              if(navigator.getUserMedia)
+              {
+                  //lo que usara nuestra funcion de medios
+                  navigator.getUserMedia({video:true,audio: true},loadCam,loadFail);
+              }
+
+              //cada segundo actualizar el canvas cada medio segundo
+              setInterval(function(){
+                //console.log('imagen encvidada');
+                viewVideo(video,context);
+              },10);
+
+          });
+      </script>
+  </body>
+</html>
