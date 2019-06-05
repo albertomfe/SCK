@@ -1,8 +1,7 @@
 {
   "name": "SCK",
   "version": "0.0.1",
-  "description": "Transmision en Streaming",
-  "author": "Manuel Flores <albertomfe@gmail.com> (http://baulprogram.com.mx.com)",
+  "description": "Transmision en Streaming",  
   "dependencies": {
     "socket.io": "*",
     "express": "*",
