@@ -1,7 +1,12 @@
 {
   "name": "SCK",
   "version": "0.0.1",
-  "description": "Transmision en Streaming",  
+  "description": "Transmision en Streaming",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "serve": "nodemon app.js"
+  },
   "dependencies": {
     "socket.io": "*",
     "express": "*",
