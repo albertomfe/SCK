@@ -12,9 +12,9 @@ var port=process.env.PORT || 3000; //SI NO EXISTE LA VARIABLE DE ENTORNO AGREGA 
 app.use(express.static(__dirname+"/public"));//retorna la direccion actual e ingresa a la carpeta publica
 
 
-app.get('/',function(req,res)//ruta principal request y response
+app.get('*',function(req,res)//ruta principal request y response
 {
-  res.redirect('index.html');//redirigimos a index.html por qeu usaremos archivos estaticos ,si no existe el archivo manda error del tipo Cannot GET /index.html
+  res.redirect('/public');//redirigimos a index.html por qeu usaremos archivos estaticos ,si no existe el archivo manda error del tipo Cannot GET /index.html
 });
 
 //escuchar la trasmision =>localiza si existe una peticion del cliente
