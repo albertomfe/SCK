@@ -5,11 +5,17 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "serve": "nodemon app.js"
+    "serve": "nodemon app.js",
+    "test":"echo \"Error:no test specified\" && exit 1"
   },
+  "keywords":["heroku"],
   "dependencies": {
     "socket.io": "*",
     "express": "*",
     "log": "*"
+  },
+  "engines":{
+    "node":"12.2.0",
+    "npm":"9.0"
   }
 }
