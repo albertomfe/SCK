@@ -1,1 +1,1 @@
-web: npm start app:sck
+web: npm start
