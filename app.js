@@ -3,6 +3,8 @@ var app=new express(); //instanciar
 var http=require("http").Server(app);//importar el server
 var io=require("socket.io")(http);//importar libreria socket => esto permite utilizar el /socket.io/socket.io.js en el html
 
+
+
 //const log = require("log");
 
 //configurar el puerto
