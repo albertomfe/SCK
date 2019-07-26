@@ -8,7 +8,6 @@
     "serve": "nodemon app.js",
     "test":"echo \"Error:no test specified\" && exit 1"
   },
-  "keywords":["heroku"],
   "dependencies": {
     "socket.io": "*",
     "express": "*",
